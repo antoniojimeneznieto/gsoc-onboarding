@@ -13,9 +13,9 @@ lazy val root = project
       "org.scala-js" %%% "scalajs-dom" % "2.8.0",
       "com.armanbilge" %%% "calico" % "0.2.3",
       "org.http4s" %%% "http4s-circe" % "0.23.33",
-      "io.circe" %% "circe-core" % "0.14.15",
-      "io.circe" %% "circe-generic" % "0.14.15",
-      "io.circe" %% "circe-parser" % "0.14.15",
+      "io.circe" %%% "circe-core" % "0.14.15",
+      "io.circe" %%% "circe-generic" % "0.14.15",
+      "io.circe" %%% "circe-parser" % "0.14.15",
       "org.http4s" %%% "http4s-dom" % "0.2.12"
     )
   )
