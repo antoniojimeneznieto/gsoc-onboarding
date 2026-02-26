@@ -6,11 +6,15 @@ The app is built with [Calico](https://www.armanbilge.com/calico/), a purely fun
 
 ## What you need to do
 
-1. **Create your own component** in `src/main/scala/gsoc/contributors/` as a new file named after your GitHub handle (e.g., `yourgithubhandle.scala`).
+1. **Set up your environment.** Install Java 21 and [sbt](https://www.scala-sbt.org/download).
 
-2. **Be creative!** Look at the existing contributors for inspiration — some have made interactive buttons, others reveal hidden info. But you are not limited to buttons. Build whatever you want: a mini game, an animation, a quiz, some generative art... surprise us!
+2. **Run the app locally.** Compile and start the development server (see [Running locally](#running-locally) below) to make sure everything works before making changes.
 
-3. **Register your component** by adding it to the `allContributors` list in [all.scala](src/main/scala/gsoc/contributors/all.scala).
+3. **Create your own component** in `src/main/scala/gsoc/contributors/` as a new file named after your GitHub handle (e.g., `yourgithubhandle.scala`).
+
+4. **Be creative!** Look at the existing contributors for inspiration — some have made interactive buttons, others reveal hidden info. But you are not limited to buttons. Build whatever you want: a mini game, an animation, a quiz, some generative art... surprise us!
+
+5. **Register your component** by adding it to the `allContributors` list in [all.scala](src/main/scala/gsoc/contributors/all.scala).
 
 > **The order matters!** The list of contributors must follow a specific ordering that is validated by a backend API. You won't know the correct position in advance — use the "Check order" button in the app to test your placement. If the order is wrong, the API will tell you which two entries are out of place. Keep trying different positions until the validation passes!
 
@@ -56,14 +60,12 @@ val yourgithubhandle: Contributor = Contributor("yourgithubhandle"):
 
 ## Running locally
 
-Make sure you have [sbt](https://www.scala-sbt.org/) installed, then:
+Start an sbt shell, then run `serve` to start the local server and `~fastLinkJS` to compile with auto-reloading:
 
-```sh
-# Compile Scala to JavaScript
-sbt ~fastLinkJS
-
-# In another terminal, start the local server
-sbt >> serve
+```
+$ sbt
+> serve
+> ~fastLinkJS
 ```
 
 Open the URL printed by the `serve` task in your browser.
