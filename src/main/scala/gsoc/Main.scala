@@ -1,6 +1,5 @@
 package gsoc
 
-import cats.data.*
 import cats.effect.*
 import cats.syntax.all.*
 
@@ -17,16 +16,6 @@ import fs2.dom.HtmlElement
 
 import org.http4s.dom.FetchClientBuilder
 import org.http4s.syntax.all.*
-
-val allContributors = NonEmptyList.of(
-  antoniojimeneznieto,
-  `typelevel-bot`,
-  `scala-steward`,
-  valencik,
-  armanbilge,
-  `octocat`,
-  djspiewak,
-)
 
 object Main extends IOWebApp:
   def render: Resource[IO, HtmlElement[IO]] =
