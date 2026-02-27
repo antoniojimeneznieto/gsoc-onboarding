@@ -9,6 +9,20 @@ import fs2.dom.HtmlElement
 import calico.html.io.{*, given}
 import calico.syntax.*
 
+def spoiler(text: String): Resource[IO, HtmlElement[IO]] =
+  SignallingRef[IO].of(false).toResource.flatMap { isHovered =>
+    span(
+      styleAttr <-- isHovered.map(h =>
+        if h then "background-color: gray; cursor: pointer;"
+        else "background-color: gray; color: transparent; user-select: none; cursor: pointer;"),
+      onMouseOver --> (_.foreach(_ => isHovered.set(true))),
+      onMouseOut --> (_.foreach(_ => isHovered.set(false))),
+      text
+    )
+  }
+
+val endofunctors: String = "endofunctors!"
+
 val thonkpad: Contributor = Contributor("thonkpad"):
   SignallingRef[IO].of(false).toResource.flatMap { revealed =>
     div(
@@ -22,13 +36,17 @@ val thonkpad: Contributor = Contributor("thonkpad"):
         },
         " on GitHub. I agree to follow the Typelevel CoC and GSoC AI policy."
       ),
-      revealed
-        .map(r => if r then p(s"My favorite programming language is Scala!") else div(s"")),
+      revealed.map(r =>
+        if r then
+          div(
+            p(s"A monad is a monoid in the category of ", spoiler(endofunctors))
+          )
+        else div(s"")),
       button(
         onClick --> (_.foreach(_ => revealed.update(!_))),
         revealed.map(r =>
-          if r then "Hide my favorite programming language"
-          else "Click to learn my favorite programming language!")
+          if r then "Hide this"
+          else "Click for a pop quiz!")
       )
     )
   }
